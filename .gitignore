@@ -1,2 +1,7 @@
 .idea/
 venv/
+.env
+src/__pycache__/
+tests/__pycache__/
+logs
+tests/unit/__pycache__
