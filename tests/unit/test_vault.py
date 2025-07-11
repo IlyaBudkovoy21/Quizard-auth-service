@@ -29,4 +29,3 @@ class TestInit:
         monkeypatch.delenv("VAULT_TOKEN")
         with pytest.raises(ValueError, match="Token is not specified"):
             HvacClient(url="http://test")
-

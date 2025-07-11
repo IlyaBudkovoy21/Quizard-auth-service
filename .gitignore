@@ -5,3 +5,5 @@ src/__pycache__/
 tests/__pycache__/
 logs
 tests/unit/__pycache__
+__pycache__/
+tests/unit/__pycache__/

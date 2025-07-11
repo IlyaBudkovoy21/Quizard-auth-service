@@ -18,17 +18,16 @@ class HvacClient:
         self.create_client()
 
     def create_client(self):
-        self.client = Client(
-            url=self._vault_url,
-            token=self._vault_token
-        )
+        self.client = Client(url=self._vault_url, token=self._vault_token)
 
     def read_item(self, mount_point: str, path: str, key: str) -> str:
         secret_key = self.client.secrets.kv.v1.read_secret(
-            path=path,
-            mount_point=mount_point
+            path=path, mount_point=mount_point
         )
-        return secret_key['data']['data'][key]
+        return secret_key["data"]["data"][key]
+
+    def read_db_secret(self, key: str):
+        return self.read_item(mount_point="kv/", path="database_info", key=key)
 
 
 hvac_client = HvacClient()
