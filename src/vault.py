@@ -30,5 +30,7 @@ class HvacClient:
         )
         return secret_key['data']['data'][key]
 
+    def read_db_secret(self, key: str):
+        return self.read_item(mount_point='kv/', path="database_info", key=key)
 
 hvac_client = HvacClient()
