@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, DateTime, Boolean, func
 
-from pydantic import EmailStr
 from uuid import UUID
 from datetime import datetime
 
@@ -12,7 +11,7 @@ class User(Base):
     __tablename__ = "Users"
 
     id: Mapped[UUID] = mapped_column(primary_key=True, nullable=False)
-    email: EmailStr
+    email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
     username: Mapped[str] = mapped_column(String(30), nullable=False)
     password: Mapped[str] = mapped_column(nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
