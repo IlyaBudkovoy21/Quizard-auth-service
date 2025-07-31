@@ -1,6 +1,11 @@
+from fastapi_users.db import SQLAlchemyUserDatabase
+from fastapi import Depends
+
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import DeclarativeBase
+from typing import AsyncGenerator
 
+from src.models import User
 from src.vault import hvac_client
 
 
@@ -30,6 +35,9 @@ class Base(DeclarativeBase):
     pass
 
 
-async def get_async_session() -> AsyncSession:
+async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionLocal() as session:
         yield session
+
+async def get_user_db(session: AsyncSession = Depends(get_async_session)):
+    yield SQLAlchemyUserDatabase(session, User)

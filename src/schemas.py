@@ -1,7 +1,17 @@
-from pydantic import BaseModel, Field, EmailStr
+import datetime
+import uuid
+from typing import Optional
+
+from fastapi_users import schemas
 
 
-class UserRegistrationData(BaseModel):
-    username: str = Field(max_length=30)
-    password: str = Field(max_length=50)
-    email: EmailStr
+class UserRead(schemas.BaseUser[uuid.UUID]):
+    username: str
+
+
+class UserCreate(schemas.BaseUserCreate):
+    username: str
+
+
+class UserUpdate(schemas.BaseUserUpdate):
+    pass
