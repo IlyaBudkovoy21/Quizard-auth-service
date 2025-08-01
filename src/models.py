@@ -1,11 +1,10 @@
-from fastapi_users.db import SQLAlchemyBaseUserTableUUID
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTableUUID
 
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, DateTime, Boolean, func
-from uuid import UUID
 from datetime import datetime
 
-from src.config.database import Base
+from src.base import Base
 
 
 class User(SQLAlchemyBaseUserTableUUID, Base):

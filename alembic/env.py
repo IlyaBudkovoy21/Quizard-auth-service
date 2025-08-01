@@ -2,11 +2,12 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+from fastapi_users_db_sqlalchemy.generics import GUID
 
 from alembic import context
 
 from src.models import User
-from src.config.database import Base
+from src.base import Base
 from src.config.database import DATABASE_URL
 
 
