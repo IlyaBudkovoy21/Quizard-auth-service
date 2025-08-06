@@ -10,5 +10,5 @@ from src.base import Base
 class User(SQLAlchemyBaseUserTableUUID, Base):
     __tablename__ = "Users"
 
-    username: Mapped[str] = mapped_column(String(30), nullable=False)
+    nickname: Mapped[str] = mapped_column(String(30), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
