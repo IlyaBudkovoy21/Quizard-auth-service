@@ -1,20 +1,14 @@
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTableUUID
+
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, DateTime, Boolean, func
-
-from pydantic import EmailStr
-from uuid import UUID
 from datetime import datetime
 
-from src.config.database import Base
+from src.base import Base
 
 
-class User(Base):
+class User(SQLAlchemyBaseUserTableUUID, Base):
     __tablename__ = "Users"
 
-    id: Mapped[UUID] = mapped_column(primary_key=True, nullable=False)
-    email: EmailStr
-    username: Mapped[str] = mapped_column(String(30), nullable=False)
-    password: Mapped[str] = mapped_column(nullable=False)
-    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
-    is_superuser: Mapped[bool] = mapped_column(Boolean, default=False)
+    nickname: Mapped[str] = mapped_column(String(30), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
