@@ -1,8 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+
+from src.verifications import get_current_user
 
 
-router = APIRouter(prefix='/auth/v1/')
+verif_router = APIRouter()
 
-@router.post('/login')
-def login():
-    pass
+
+@verif_router.get("/verify-token")
+async def verify_token(user_data: dict = Depends(get_current_user)):
+    return {
+        "status": "success",
+    }
