@@ -1,0 +1,18 @@
+networks:
+  app:
+
+
+services:
+  auth-service:
+    image: ilyabudkovoy/auth-service:1
+    ports:
+      - 8000:8000
+    networks:
+      - app
+    depends_on:
+      - nginx
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    restart: unless-stopped
